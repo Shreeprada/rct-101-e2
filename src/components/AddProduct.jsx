@@ -24,7 +24,7 @@ const AddProduct = ({dataList,setDataList}) => {
   };
   const changeprice=(e)=>{setPrice(e.target.value)};
   const saveInfo=()=>{
-    axios.get(`http://localhost:8080/products`,{
+    fetch(`http://localhost:8080/products`,{
       method:"POST",
       headers:{"content-type":"application/json",},
       body:JSON.stringify({
@@ -34,6 +34,7 @@ const AddProduct = ({dataList,setDataList}) => {
         "price":price,
       }),
     })
+   .then((r)=>r.json())
     .then((d)=>{
       setDataList([...dataList,d]);
     });
